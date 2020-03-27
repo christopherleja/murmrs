@@ -1,0 +1,19 @@
+<h2>Create an account!</h2>
+<%= form_for @user do |f| %>
+<%= f.label :username %>
+<%= f.text_field :username %>
+<br>
+<%= f.label :email %>
+<%= f.text_field :email %>
+<br>
+<%= f.label :password %>
+<%= f.password_field :password %>
+<br>
+<%= f.label :bio %>
+<%= f.text_area :bio %>
+<br>
+<%= f.label :avatar %>
+<%= f.text_field :avatar %>
+<br>
+<%= f.submit%>
+<%end%>

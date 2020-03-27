@@ -1,0 +1,6 @@
+<h2>Top Results for <% @category.name%></h2>
+<ul>
+<% @category.posts.sort_by do |post| post.likes %>
+<li> <%= link_to post.content, post %></li>
+<%end%>
+</ul>

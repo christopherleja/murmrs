@@ -1,0 +1,9 @@
+<h2>Discover New Users to Follow</h2>
+
+<% @users.each do |user| %>
+<ul>
+    <li>
+    <%= link_to user.username, user %>
+    </li>
+<%end%>
+</ul>

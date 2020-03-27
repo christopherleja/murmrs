@@ -1,0 +1,26 @@
+<div class="column">
+    <nav class="panel">
+        <p class="panel-heading">Discover New Users to Follow</p>
+    </nav>
+    <div class="panel-block">
+        <ul>
+            <% @current_user.discover_users.each do |user| %>
+                <div class="box">
+                    <article class="media">
+                        <div class="media-left">
+                            <figure class="image is-64x64">
+                                <img src=<%="#{user.avatar}"%>>
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <li class="activity">
+                                <strong><%= link_to user.username, user %></strong><br>
+                                <p><%= user.bio %></p>
+                            </li>
+                        </div>
+                    </article>
+                </div>
+            <%end%>
+        </ul>
+    </div>
+</div>

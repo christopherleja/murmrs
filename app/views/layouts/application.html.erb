@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Murmr</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if flash[:notice]%>
+      <div class="notification.is-primary global-notification">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <%end%>
+    <% if flash[:alert] %>
+      <div class="notification is-danger global-notification">
+        <p class="alert"><%= alert%></p>
+      </div>
+    <% end%>
+      <nav class="navbar is-primary">
+        <div class="navbar-brand">
+        <%= link_to root_path, class: "navbar-item" do%>
+        <h2 class="title is-4">Murmr</h2>
+        <%end%>
+        <div class="navbar-burger burger" data-target="navbarExample">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+      </div>
+
+      <div id="navbarExample" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="field is-grouped">
+            <p class="control">
+              <%= link_to 'New Murmr', new_post_path, class: "button is-primary is-inverted"%>
+            </p>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+    <%= yield %>
+  </body>
+</html>

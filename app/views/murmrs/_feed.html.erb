@@ -1,0 +1,32 @@
+<div class="column is-half">
+    <article class="media box">
+        <figure class="media-left">
+            <p class="image is-64x64">
+                <img src=<%="#{@current_user.avatar}"%>>
+            </p>
+        </figure>
+        <div class="media-content">
+            <%= render 'new_post_form' %>
+        </div>
+    </article>
+</div>
+
+<ul>
+    <% @activities.each do |activity| %>
+    <div class="box">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-64x64">
+                    <img src=<%="#{activity.owner.avatar}"%>>
+                </figure>
+            </div>
+            <div class="media-content">
+                <li class="activity">
+                    <strong><%= link_to activity.owner.username, activity.owner %></strong><br>
+                    <p><%= render_activity(activity, locals: {followers: current_user.followees}) %></p>
+                </li>
+            </div>
+        </article>
+    </div>
+<%end%>
+</ul>

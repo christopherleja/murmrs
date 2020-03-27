@@ -1,0 +1,5 @@
+<% if activity.trackable %>
+    edited a murmr <%= link_to activity.trackable.content, activity.trackable %>
+<%else%>
+    edited and deleted a murmr. A murdr most foul.
+<%end%>

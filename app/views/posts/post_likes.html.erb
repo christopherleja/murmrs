@@ -1,0 +1,13 @@
+<h2>Users who have liked this post</h2>
+<ul>
+<% if !@post.likes%>
+    <% @post.likes = 0%>
+    <%= "It doesn't look like anyone has liked this post yet"%>
+<% else%>
+<% @post.likes.each do |like| %>
+    <li>
+    <%= link_to like.user.username, like.user %>
+    </li>
+    <%end%>
+<% end %>
+</ul>

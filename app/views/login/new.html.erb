@@ -1,0 +1,16 @@
+<h2> Log in! </h2>
+<%= form_tag login_index_path do %>
+<ul>
+    <li>
+        <%= label_tag :username %>
+        <%= text_field_tag :username %>
+    </li>
+    <li>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+    </li>
+</ul>
+<%= submit_tag "Log in!"%>
+<% end %>
+
+<h3>Don't have an account? <%= link_to 'Create an account', new_user_path %>

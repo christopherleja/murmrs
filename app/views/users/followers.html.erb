@@ -1,0 +1,6 @@
+<h2>These users are following <%= @user.username %> </h2>
+<ul>
+<%@user.followees.each do |followee| %>
+<li><%= link_to followee.username, followee %></li>
+<% end%>
+</ul>

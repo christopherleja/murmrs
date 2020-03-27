@@ -1,0 +1,15 @@
+<h2><%= @post.content %></h2>
+<br>
+<p><%= link_to "#{@post.likes.count} likes", post_likes_path %></p>
+<br>
+    <ul>
+    <% @post.comments.each do |comment| %>
+        <li>
+        <%= comment.comment %> 
+        <%= link_to User.find(comment.user_id).username, user_path(comment.user_id) %>
+        </li>
+        <br>
+    <% end%>
+    </ul>
+<br>
+<%= link_to @post.user.username, @post.user %>

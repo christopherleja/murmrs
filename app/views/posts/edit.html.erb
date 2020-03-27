@@ -1,0 +1,7 @@
+<h2>Edit Post</h2>
+<%= form_for @post do |f| %>
+<%= f.label :content %>
+<%= f.text_area :content %>
+<br>
+<%= f.submit %>
+<%end%>

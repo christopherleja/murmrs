@@ -1,0 +1,12 @@
+<% @posts.each do |post| %>
+<ul>
+    <li>
+    <%= post.content%>
+    <br>
+    <%= link_to post.user.username, post.user %>
+    <br>
+    <%= "#{post.likes.count} likes"%>
+    <br>
+    </li>
+</ul>
+<%end%>
