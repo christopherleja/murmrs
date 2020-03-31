@@ -1,4 +1,4 @@
-<div class="column is-half">
+<div class="column">
     <article class="media box">
         <figure class="media-left">
             <p class="image is-64x64">
@@ -23,7 +23,7 @@
             <div class="media-content">
                 <li class="activity">
                     <strong><%= link_to activity.owner.username, activity.owner %></strong><br>
-                    <p><%= render_activity(activity, locals: {followers: current_user.followees}) %></p>
+                    <p><%= render_activity(activity, locals: {followers: current_user.followers}) %></p>
                 </li>
             </div>
         </article>

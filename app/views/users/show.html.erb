@@ -1,49 +1,87 @@
-<h2><%=@user.username %></h2>
-<%= image_tag "#{@user.avatar}" %>
-<%= @user.bio %>
+<div class="column">
+    <div class="panel-block">
+        <ul>
+            <h2><%=@user.username %></h2>
+                <div class="box">
+                    <article class="media">
+                        <div class="media-left">
+                            <figure class="image is-128x128">
+                                <img src=<%="#{@user.avatar}"%>>
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                                <li class="activity">
+                                <p><%= @user.bio %></p>
+                            </li>
+                        </div>
+                    </article>
+                </div>
+            </ul>
+        </div>
+    </div>
 
-<%= link_to 'Murmr', new_post_path %>
-<br>
-<% if @current_user == @user %>
-   <p><%= "#{@current_user.username}'s page" %></p>
-<% elsif @current_user.followers.include?(@user) %>
-   <p><%= button_to "Unfollow #{@user.username}",     
-       unfollow_user_path, method: "POST" %></p>
-<% else %>
-   <p><%= button_to "Follow #{@user.username}", follow_user_path, 
-       method: "POST"  %></p>
-<% end %>
-<br>
-<%= link_to 'Followers', followers_path %>
-<br>
-<%= link_to 'Following', following_path %>
-<br>
-<%= link_to 'Likes', likes_path%>
-<br>
-<%= link_to 'Find Users to Follow', discover_path %>
-<br>
-<%= button_to 'Log Out', log_out_path, method: "DELETE" %>
-<ul>
-<li>
-<% @user.posts.order('created_at desc').each do |post|%>
-<%= link_to post.content, post %>
-<% if post.likes%>
-    <p><%=post.likes.count%> likes </p>
-    <%= button_to 'Like', like_post_path(post), method: "POST" %>
-    
-    <%= form_for [post, Comment.new] do |f| %>
-    <%= f.text_area :comment%> 
-    <br>
-    <%= f.submit 'Comment' %>
-    <%end%>
-    <% if @current_user == @user %>
-        <%= link_to 'Edit Murmr', edit_post_path(post) %>
-        <%= button_to "Delete Murmr", post_path(post), :method => :delete %>
-    <%end%>
-<%end%>
-<br>
-</li>
+    <ul>
+    <% @user.posts.order('created_at desc').each do |post|%>
+    <div class="box">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-64x64">
+                    <img src=<%="#{post.user.avatar}"%>>
+                </figure>
+            </div>
+            <div class="media-content">
+                <li class="activity">
+                    <strong><%= link_to post.user.username, post.user %></strong><br>
+                    <p><%= link_to post.content, post %></p>
+                    <%= form_for [post, Comment.new] do |f| %>
+                    <%= f.text_area :comment%> 
+                    <br>
+                    <p><%=post.likes.count%> likes </p>
+                    <%= f.submit 'Comment', class:"button is-primary is-small"%>
+                    <%= button_to 'Like', like_post_path(post), method: "POST", class:"button is-primary is-small"%>
+                        <%end%>    
+                        <% if @current_user == @user %>
+                        <%= link_to 'Edit Murmr', edit_post_path(post) %>
+                        <%= button_to "Delete Murmr", post_path(post), :method => :delete, class:"button is-primary is-small" %>
+                        <%end%>
+                </li>
+            </div>
+        </article>
+    </div>
 <%end%>
 </ul>
 
-<%= link_to 'home', murmrs_path %>
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <% if @current_user == @user %>
+                    <p><%= "#{@current_user.username}'s page" %></p>
+                <% elsif @current_user.followers.include?(@user) %>
+                    <p><%= button_to "Unfollow #{@user.username}", unfollow_user_path, 
+                    method: "POST", class: "button is-primary" %></p>
+                <% else %>
+                    <p><%= button_to "Follow #{@user.username}", follow_user_path, 
+                    method: "POST", class: "button is-primary"  %></p>
+                <% end %>
+            </div>
+            <div class="column">
+                <%= link_to 'Followers', followers_path %>
+            </div>
+            <div class="column">
+                <%= link_to 'Following', following_path %>
+            </div>
+            <div class="column">
+                <%= link_to 'Likes', likes_path%>
+            </div>
+            <div class="column">
+                <%= link_to 'Find Users to Follow', discover_path %>
+            </div>
+            <div class="column">
+                <%= button_to 'Log Out', log_out_path, method: "DELETE" %>
+            </div>
+        </div>
+    </div>
+</section>
+
+<button class="button is-medium is-fullwidth is-primary"><%= link_to 'home', murmrs_path %></button>

@@ -1,6 +1,6 @@
 <h2><%= @user.username%>'s Liked Posts: </h2> 
 <ul>
-<%@user.likes.each do |like|%>
+<%@user.likes.order('created_at desc').each do |like|%>
 <li>
 <%= link_to like.post.content, like.post %>
 <li>
