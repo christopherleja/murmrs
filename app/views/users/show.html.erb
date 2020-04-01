@@ -64,21 +64,20 @@
                     <p><%= button_to "Follow #{@user.username}", follow_user_path, 
                     method: "POST", class: "button is-primary"  %></p>
                 <% end %>
+                <br>
+                <%= link_to 'Likes', likes_path, class: "button is-primary"%>
             </div>
             <div class="column">
-                <%= link_to 'Followers', followers_path %>
+                <%= link_to 'Followers', followers_path, class: "button is-primary"%>
+                <br>
+                <br>
+                <%= link_to 'Following', following_path, class: "button is-primary" %>
             </div>
             <div class="column">
-                <%= link_to 'Following', following_path %>
-            </div>
-            <div class="column">
-                <%= link_to 'Likes', likes_path%>
-            </div>
-            <div class="column">
-                <%= link_to 'Find Users to Follow', discover_path %>
-            </div>
-            <div class="column">
-                <%= button_to 'Log Out', log_out_path, method: "DELETE" %>
+                <%= link_to 'Find Users to Follow', discover_path, class: "button is-primary" %>
+                <br>
+                <br>
+                <%= button_to 'Log Out', log_out_path, method: "DELETE", class: "button is-primary" %>
             </div>
         </div>
     </div>

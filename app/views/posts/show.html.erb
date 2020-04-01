@@ -1,26 +1,28 @@
-<h2><%= @post.content %></h2>
-<br>
-<p><%= link_to "#{@post.likes.count} likes", post_likes_path %></p>
-<br>
-    <ul>
-    <% @post.comments.each do |comment| %>
-        <li>
-        <%= comment.comment %> 
-        <%= link_to User.find(comment.user_id).username, user_path(comment.user_id) %>
-        </li>
-        <br>
-    <% end%>
-    </ul>
-<br>
-<%= button_to 'Like', like_post_path(@post), method: "POST" %>
-<%= form_for [@post, Comment.new] do |f| %>
-        <%= f.text_area :comment%> 
-        <br>
-        <%= f.submit 'Comment' %>
-        <%end%>
-<% if @current_user == @post.user %>
-        <%= link_to 'Edit Murmr', edit_post_path(@post) %>
-        <%= button_to "Delete Murmr", post_path(@post), :method => :delete %>
-<%end%>
-
-<%= link_to @post.user.username, @post.user %>
+<div class="box">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-64x64">
+                    <img src=<%="#{@post.user.avatar}"%>>
+                </figure>
+            </div>
+            <div class="media-content">
+                <div class="activity">
+                    <strong><%= link_to @post.user.username, @post.user %></strong><br>
+                    <p><%= link_to @post.content, @post %></p>
+                    <%= form_for [@post, Comment.new] do |f| %>
+                    <%= f.text_area :comment%> 
+                    <br>
+                    <p><%=@post.likes.count%> likes </p>
+                    <%= f.submit 'Comment', class:"button is-primary is-small"%>
+                    <%= button_to 'Like', like_post_path(@post), method: "POST", class:"button is-primary is-small"%>
+                        <%end%>    
+                        <% if @current_user == @user %>
+                        <%= link_to 'Edit Murmr', edit_post_path(@post) %>
+                        <%= button_to "Delete Murmr", post_path(@post), :method => :delete, class:"button is-primary is-small" %>
+                        <%end%>
+                </div>
+            </div>
+        </article>
+    </div>
+</ul>
+<button class="button is-medium is-fullwidth is-primary"><%= link_to 'home', murmrs_path %></button>
