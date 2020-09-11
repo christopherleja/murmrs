@@ -26,7 +26,7 @@ gem 'bulma-rails', '~> 0.8.0'
 gem 'gravatar_image_tag', '~> 1.2'
 
 #styling 
-gem 'bootstrap-sass', '~> 3.3.1'
+gem 'bootstrap-sass', '~> 3.4.1'
 
 #adds activity feed
 gem 'public_activity'
